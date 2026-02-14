@@ -4,16 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz Día de la Amistad 🌸</title>
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap');
-
-        /* Estilos originales de las flores - EXACTAMENTE como en el código proporcionado */
-        :root {
-            --bg: #050514;
-            --grass: #2ecc71;
-            --flower: #ff6b6b;
-            --leaf: #27ae60;
-        }
 
         * {
             margin: 0;
@@ -23,64 +16,73 @@
 
         body {
             min-height: 100vh;
-            background: var(--bg);
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #0b0b2b, #1a1a3a);
             font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
         }
 
         .container {
             position: relative;
             width: 100%;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Título atractivo */
+        /* Título principal atractivo */
         .title-container {
             position: relative;
-            z-index: 100;
+            z-index: 20;
             text-align: center;
-            padding: 40px 20px 20px;
+            margin: 40px 0 20px;
+            padding: 20px;
             animation: fadeInDown 1.5s ease-out;
         }
 
         .main-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
+            font-size: 4.5rem;
             background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 20px rgba(255,107,107,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 
+                         0 0 20px rgba(255,255,255,0.5);
             margin-bottom: 10px;
             letter-spacing: 2px;
+            animation: glow 3s ease-in-out infinite;
         }
 
         .sub-title {
-            color: white;
-            font-size: 1.3rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(5px);
-            padding: 8px 25px;
+            padding: 10px 30px;
             border-radius: 50px;
             display: inline-block;
             border: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* Control de música - más elegante */
-        .music-player {
+        /* Control de música */
+        .music-control {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 1000;
-            background: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.2);
             backdrop-filter: blur(10px);
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 50px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
             display: flex;
             align-items: center;
             gap: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            animation: slideIn 1s ease-out;
         }
 
         .music-btn {
@@ -107,9 +109,10 @@
         .music-status {
             color: white;
             font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
-        /* Sección de flores - manteniendo estructura original */
+        /* Estilos de las flores */
         section {
             position: relative;
             width: 100%;
@@ -117,7 +120,6 @@
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            z-index: 10;
         }
 
         .night {
@@ -126,8 +128,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            background: radial-gradient(circle at center, #1a1a3a 0%, #0a0a1a 100%);
             z-index: 1;
+            pointer-events: none;
         }
 
         .flowers {
@@ -137,16 +140,14 @@
             z-index: 10;
         }
 
-        /* Estilos específicos para las flores (copiados exactamente del código original) */
+        /* Estilos de las flores */
         .flower {
             position: absolute;
             bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
         }
 
         .flower--1 { left: 30%; }
-        .flower--2 { left: 50%; }
+        .flower--2 { left: 50%; transform: translateX(-50%); }
         .flower--3 { left: 70%; }
 
         .flower__leafs {
@@ -200,18 +201,64 @@
             height: 15px;
             background: linear-gradient(135deg, #2ecc71, #27ae60);
             border-radius: 50% 50% 50% 0;
-            transform-origin: bottom right;
         }
 
-        .flower__grass {
+        /* Mensaje TE AMO */
+        .flower-message {
             position: absolute;
-            bottom: 0;
-            left: 0;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ff6b6b;
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(255,107,107,0.5);
+            animation: heartbeat 1.5s ease-in-out infinite;
+            z-index: 20;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* GIF Container */
+        .gif-container {
+            position: relative;
+            z-index: 30;
+            margin: 40px 0 60px;
+            text-align: center;
             width: 100%;
-            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .friendship-gif {
+            max-width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 3px solid rgba(255,255,255,0.3);
+            animation: floatGif 3s ease-in-out infinite;
         }
 
         /* Animaciones */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255,107,107,0.5), 0 0 40px rgba(255,215,0,0.3); }
+            50% { text-shadow: 0 0 30px rgba(107,203,119,0.6), 0 0 60px rgba(77,150,255,0.4); }
+        }
+
         @keyframes bloom {
             from { transform: scale(0); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
@@ -232,60 +279,72 @@
             50% { transform: scale(1.1); }
         }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Mensaje TE AMO */
-        .flower-message {
-            position: absolute;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #ff6b6b;
-            font-size: 3rem;
-            font-weight: bold;
-            text-shadow: 0 0 20px rgba(255,107,107,0.5);
-            animation: heartbeat 1.5s ease-in-out infinite;
-            z-index: 20;
-            font-family: 'Dancing Script', cursive;
-        }
-
         @keyframes heartbeat {
             0%, 100% { transform: translateX(-50%) scale(1); }
             50% { transform: translateX(-50%) scale(1.1); }
         }
 
+        @keyframes floatGif {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Estrellas */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
-            .main-title { font-size: 2.5rem; }
-            .sub-title { font-size: 1rem; }
+            .main-title { font-size: 3rem; }
+            .sub-title { font-size: 1.2rem; }
+            .music-control { top: 10px; right: 10px; padding: 8px 16px; }
             .flower-message { font-size: 2rem; }
+            .friendship-gif { max-width: 250px; }
         }
     </style>
 </head>
 <body class="container">
-    <!-- Título -->
-    <div class="title-container">
-        <h1 class="main-title">Feliz Día de la Amistad</h1>
-        <div class="sub-title">Para alguien muy especial ❤️</div>
+    <!-- Estrellas animadas -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Control de música -->
+    <div class="music-control">
+        <button class="music-btn" id="musicToggle">🔊</button>
+        <span class="music-status" id="musicStatus">Reproduciendo música</span>
     </div>
 
-    <!-- Reproductor de música (oculto pero funcional) -->
+    <!-- Audio oculto para música -->
     <audio id="bgMusic" loop preload="auto" style="display: none;">
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-        Tu navegador no soporta audio HTML5.
     </audio>
 
-    <!-- Control de música visible -->
-    <div class="music-player">
-        <button class="music-btn" id="musicToggle">🔊</button>
-        <span class="music-status" id="musicStatus">Reproduciendo...</span>
+    <!-- Título principal -->
+    <div class="title-container">
+        <h1 class="main-title">Feliz Día de la Amistad</h1>
+        <div class="sub-title">Para una persona muy especial ❤️</div>
     </div>
 
-    <!-- Sección de flores - EXACTAMENTE como en el código original -->
+    <!-- Sección de flores -->
     <section>
         <div class="night"></div>
         <div class="flowers">
@@ -296,7 +355,6 @@
                     <div class="flower__leaf flower__leaf--3"></div>
                     <div class="flower__leaf flower__leaf--4"></div>
                     <div class="flower__white-circle"></div>
-
                     <div class="flower__light flower__light--1"></div>
                     <div class="flower__light flower__light--2"></div>
                     <div class="flower__light flower__light--3"></div>
@@ -323,7 +381,6 @@
                     <div class="flower__leaf flower__leaf--3"></div>
                     <div class="flower__leaf flower__leaf--4"></div>
                     <div class="flower__white-circle"></div>
-
                     <div class="flower__light flower__light--1"></div>
                     <div class="flower__light flower__light--2"></div>
                     <div class="flower__light flower__light--3"></div>
@@ -348,7 +405,6 @@
                     <div class="flower__leaf flower__leaf--3"></div>
                     <div class="flower__leaf flower__leaf--4"></div>
                     <div class="flower__white-circle"></div>
-
                     <div class="flower__light flower__light--1"></div>
                     <div class="flower__light flower__light--2"></div>
                     <div class="flower__light flower__light--3"></div>
@@ -365,135 +421,109 @@
                     <div class="flower__line__leaf flower__line__leaf--4"></div>
                 </div>
             </div>
+            <p class="flower-message">TE AMO</p>
+        </div>
+    </section>
 
-            <div class="grow-ans" style="--d:1.2s">
-                <div class="flower__g-long">
-                    <div class="flower__g-long__top"></div>
-                    <div class="flower__g-long__bottom"></div>
-                </div>
-            </div>
+    <!-- GIF Container - Reemplazando el mensaje anterior -->
+    <div class="gif-container">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTdhdDBraDVyeTExbzR5enBkaTJqaDlmdm82YjBha3R0azZ2eWl1dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7abB06u9bNzA8LC8/giphy.gif" 
+             alt="Feliz Día de la Amistad" 
+             class="friendship-gif"
+             onerror="this.onerror=null; this.src='https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif'">
+    </div>
 
-            <div class="growing-grass">
-                <div class="flower__grass flower__grass--1">
-                    <div class="flower__grass--top"></div>
-                    <div class="flower__grass--bottom"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--1"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--2"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--3"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--4"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--5"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--6"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--7"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--8"></div>
-                    <div class="flower__grass__overlay"></div>
-                </div>
-            </div>
+    <script>
+        // Crear estrellas animadas
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
 
-            <div class="growing-grass">
-                <div class="flower__grass flower__grass--2">
-                    <div class="flower__grass--top"></div>
-                    <div class="flower__grass--bottom"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--1"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--2"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--3"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--4"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--5"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--6"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--7"></div>
-                    <div class="flower__grass__leaf flower__grass__leaf--8"></div>
-                    <div class="flower__grass__overlay"></div>
-                </div>
-            </div>
-
-            <div class="grow-ans" style="--d:2.4s">
-                <div class="flower__g-right flower__g-right--1">
-                    <div class="leaf"></div>
-                </div>
-            </div>
-
-            <div class="grow-ans" style="--d:2.8s">
-                <div class="flower__g-right flower__g-right--2">
-                    <div class="leaf"></div>
-                </div>
-            </div>
-
-            <div class="grow-ans" style="--d:2.8s">
-                <div class="flower__g-front">
-                    <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--1">
-                        <div class="flower__g-front__leaf"></div>
-                    </div>
-                    <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--2">
-                        <div class="flower__g-front__leaf"></div>
-                    </div>
-                    <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--3">
-                        <div class="flower__g-front__leaf"></div>
-                    </div>
-                    <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--4">
-                        <div class="flower__g-front__leaf"></div>
-                    </div>
-                    <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--5">
-                        <div class="flower__g-front__leaf"></div>
-                    </div>
-                    <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--6">
-                        <div class="flower__g-front__leaf"></div>
-                    </div>
-                    <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--7">
-                        <div class="flower__g-front__leaf"></div>
-                    </div>
-                    <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--8">
-                        <div class="flower__g-front__leaf"></div>
-                    </div>
-                    <div class="flower__g-front__line"></div>
-                </div>
-            </div>
-
-            <div class="grow-ans" style="--d:3.2s">
-                <div class="flower__g-fr">
-                    <div class="leaf"></div>
-                    <div class="flower__g-fr__leaf flower__g-fr__leaf--1"></div>
-                    <div class="flower__g-fr__leaf flower__g-fr__leaf--2"></div>
-                    <div class="flower__g-fr__leaf flower__g-fr__leaf--3"></div>
-                    <div class="flower__g-fr__leaf flower__g-fr__leaf--4"></div>
-                    <div class="flower__g-fr__leaf flower__g-fr__leaf--5"></div>
-                    <div class="flower__g-fr__leaf flower__g-fr__leaf--6"></div>
-                    <div class="flower__g-fr__leaf flower__g-fr__leaf--7"></div>
-                    <div class="flower__g-fr__leaf flower__g-fr__leaf--8"></div>
-                </div>
-            </div>
-
-            <div class="long-g long-g--0">
-                <div class="grow-ans" style="--d:3s">
-                    <div class="leaf leaf--0"></div>
-                </div>
-                <div class="grow-ans" style="--d:2.2s">
-                    <div class="leaf leaf--1"></div>
-                </div>
-                <div class="grow-ans" style="--d:3.4s">
-                    <div class="leaf leaf--2"></div>
-                </div>
-                <div class="grow-ans" style="--d:3.6s">
-                    <div class="leaf leaf--3"></div>
-                </div>
-            </div>
-
-            <div class="long-g long-g--1">
-                <div class="grow-ans" style="--d:3.6s">
-                    <div class="leaf leaf--0"></div>
-                </div>
-                <div class="grow-ans" style="--d:3.8s">
-                    <div class="leaf leaf--1"></div>
-                </div>
-                <div class="grow-ans" style="--d:4s">
-                    <div class="leaf leaf--2"></div>
-                </div>
-                <div class="grow-ans" style="--d:4.2s">
-                    <div class="leaf leaf--3"></div>
-                </div>
-            </div>
-
-            <div class="long-g long-g--2">
-                <div class="grow-ans" style="--d:4s">
-                    <div class="leaf leaf--0"></div>
-                </div>
-                <div class="grow-ans" styl     
-
+        // Configurar música con reproducción automática
+        function setupMusic() {
+            const audio = document.getElementById('bgMusic');
+            const musicToggle = document.getElementById('musicToggle');
+            const musicStatus = document.getElementById('musicStatus');
+            
+            let isPlaying = false;
+            
+            // Configurar volumen
+            audio.volume = 0.4; // 40% de volumen
+            
+            // Función para intentar reproducir automáticamente
+            function attemptAutoPlay() {
+                audio.play()
+                    .then(() => {
+                        isPlaying = true;
+                        musicToggle.textContent = '🔊';
+                        musicStatus.textContent = 'Reproduciendo música';
+                        console.log('Música reproduciéndose automáticamente');
+                    })
+                    .catch(error => {
+                        console.log('Autoplay bloqueado:', error);
+                        isPlaying = false;
+                        musicToggle.textContent = '🔇';
+                        musicStatus.textContent = 'Click para reproducir';
+                        
+                        // Mostrar mensaje amigable
+                        showAutoplayMessage();
+                    });
+            }
+            
+            // Mostrar mensaje si autoplay está bloqueado
+            function showAutoplayMessage() {
+                const msg = document.createElement('div');
+                msg.style.position = 'fixed';
+                msg.style.bottom = '20px';
+                msg.style.left = '50%';
+                msg.style.transform = 'translateX(-50%)';
+                msg.style.background = 'rgba(255,107,107,0.9)';
+                msg.style.color = 'white';
+                msg.style.padding = '12px 25px';
+                msg.style.borderRadius = '50px';
+                msg.style.zIndex = '2000';
+                msg.style.fontSize = '1rem';
+                msg.style.backdropFilter = 'blur(5px)';
+                msg.style.boxShadow = '0 4px 15px rgba(0,0,0,0.3)';
+                msg.style.animation = 'fadeInUp 0.5s ease-out';
+                msg.style.cursor = 'pointer';
+                msg.innerHTML = '🎵 Haz clic aquí para reproducir la música 🎵';
+                
+                msg.addEventListener('click', () => {
+                    audio.play()
+                        .then(() => {
+                            isPlaying = true;
+                            musicToggle.textContent = '🔊';
+                            musicStatus.textContent = 'Reproduciendo música';
+                            msg.remove();
+                        })
+                        .catch(e => console.log('Error:', e));
+                });
+                
+                document.body.appendChild(msg);
+                
+                // Auto-remover después de 8 segundos
+                setTimeout(() => {
+                    if (msg.parentNode) {
+                        msg.style.animation = 'fadeOut 0.5s ease-out';
+                        setTimeout(() => msg.remove(), 500);
+                    }
+                }, 8000);
+            }
+            
+            // Intentar reproducir cuando la página cargue
+            window.addEventListener('load', () => {
+                // Pequeño retraso para asegurar que todo esté listo
+                setTimeout(attemptAutoPlay, 1000);
+            });
+ 
